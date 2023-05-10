@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit]
-  
+
 
   def show
     @user = User.find(params[:id])
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -25,6 +25,18 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+  def followings
+  user = User.find(params[:id])
+  @users = user.followings
+  end
+
+  # フォロワー一覧
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+  end
+
 
   private
 
